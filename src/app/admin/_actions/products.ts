@@ -74,19 +74,32 @@ const editSchema = addSchema.extend({
 })
 
 export async function updateProduct(id: string,prevState: unknown, formData: FormData) {
-  const raw = {
+ 
+   const raw: Record<string, unknown> = {
     name: formData.get("name"),
     description: formData.get("description"),
     priceInCents: formData.get("priceInCents"),
     file: formData.get("file"),
     image: formData.get("image")
+  };
+
+  // ✅ Clean file/image if they are not valid File instances
+  if (!(raw.file instanceof File) || raw.file.size === 0) {
+    delete raw.file;
   }
+
+  if (!(raw.image instanceof File) || raw.image.size === 0) {
+    delete raw.image;
+  }
+
 
   const result = editSchema.safeParse(raw);
+  console.log(result?.success);
   if (!result.success) {
+    console.log("loi");
     return result.error.flatten().fieldErrors; //  Return errors
   }
-
+ 
   const data = result.data;
   const product = await db.product.findUnique({ where: { id }});
   if (product == null) return notFound();
@@ -104,7 +117,7 @@ export async function updateProduct(id: string,prevState: unknown, formData: For
    imagePath = `/products/${crypto.randomUUID()}-${data.image.name}`;
   await fs.writeFile(`public${imagePath}`, Buffer.from(await data.image.arrayBuffer()));// save new image to public folder
   }
-
+ 
 
   //  Save product in DB
   await db.product.update({
