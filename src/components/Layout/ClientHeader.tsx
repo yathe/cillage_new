@@ -1,4 +1,5 @@
 "use client";
+<<<<<<< HEAD
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -80,3 +81,20 @@ export function ClientHeader() {
     </>
   );
 }
+=======
+import { UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+
+export function ClientHeader() {
+  return (
+    <nav className="bg-primary text-primary-foreground flex justify-between items-center px-4 py-2">
+      <div className="flex gap-4">
+        <Link href="/">Home</Link>
+        <Link href="/products">Products</Link>
+        <Link href="/users">My Orders</Link>
+      </div>
+      <UserButton afterSignOutUrl="/sign-in" />
+    </nav>
+  );
+}
+>>>>>>> 44ac3c5 (WIP before pulling)

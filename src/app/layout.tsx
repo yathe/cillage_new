@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from '@clerk/nextjs';// 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -32,6 +33,10 @@ export default function RootLayout({
         {children}
       </body>
     </html>
+<<<<<<< HEAD
     </ClerkProvider>
+=======
+    </ClerkProvider>// 
+>>>>>>> 44ac3c5 (WIP before pulling)
   );
 }

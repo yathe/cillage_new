@@ -25,6 +25,7 @@ model Product {
 }
 
 model User {
+<<<<<<< HEAD
   id            String   @id @default(uuid())
   name          String
   clerkUserId   String   @unique
@@ -33,6 +34,16 @@ model User {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   orders       Order[]
+=======
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  name        String            
+  imageUrl    String?      
+  updatedAt DateTime @updatedAt
+  clerkUserId String   @unique 
+  orders    Order[]
+>>>>>>> 44ac3c5 (WIP before pulling)
 }
 
 model Order {
