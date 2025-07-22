@@ -33,10 +33,9 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-<<<<<<< HEAD
+
+  
     </ClerkProvider>
-=======
-    </ClerkProvider>// 
->>>>>>> 44ac3c5 (WIP before pulling)
+
   );
 }
